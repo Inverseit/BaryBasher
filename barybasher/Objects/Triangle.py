@@ -62,12 +62,10 @@ class Triangle():
             return Line(equation=core.sympy.Eq(core.a * core.a * core.y + core.b * core.b * core.x, 0))
         raise Exception("general tangents will be later")
 
-
     def isogonal(self, p):
         if not isinstance(p, Point):
             raise Exception(f"{p} is not a point")
         return Point(self.a * self.a / p.x, self.b * self.b / p.y, self.c * self.c / p.z)
-    
     
     def isatomic(self, p):
         if not isinstance(p, Point):
