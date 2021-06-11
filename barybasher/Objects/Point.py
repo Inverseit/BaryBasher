@@ -11,6 +11,7 @@ class Point():
         self.z = self.getConverted(z)
         self.short = (x, y, z)
         self.normal = self.get_normalized_dict().values()
+        self._beautifiedVersion = self.beautified
     @staticmethod
     def getConverted(v):
         if v == 1:
@@ -40,7 +41,8 @@ class Point():
         return Point(mx, my, mz)
 
     def __str__(self):
-        return f"({self.x}:{self.y}:{self.z})"
+        t = self._beautifiedVersion()
+        return f"({t.x}:{t.y}:{t.z})"
 
     def __eq__(self, other):
         if not isinstance(other, Point):

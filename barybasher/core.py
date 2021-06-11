@@ -43,3 +43,9 @@ def intersection_of_lines(l1, l2):
     require_line(l2)
     return sympy.linsolve(
         [l1.get_equation(), l2.get_equation(), x - 1], (x, y, z))
+
+
+def is_collinear(p, q, r):
+    res = sympy.Matrix(
+        [r.getAsList(), p.getAsList(), q.getAsList()]).det().equals(sympy.S.Zero)
+    return res
