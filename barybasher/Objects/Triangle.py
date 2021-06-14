@@ -1,5 +1,6 @@
 from .Point import Point
 from .Line import Line
+from .Circle import Circle
 import barybasher.core as core
 
 class Triangle():
@@ -8,6 +9,7 @@ class Triangle():
         self.B = Point(0,1,0)
         self.C = Point(0,0,1)
         self.a, self.b, self.c = a, b, c
+        self.x, self.y, self.z = core.xyz
         self.___conway_inited = False
 
     def getVertices(self):
@@ -76,9 +78,21 @@ class Triangle():
         if self.___conway_inited:
             return
         self.___conway_inited = True
-        self.S_A = conway("A", self.a, self.b, self.c)
-        self.S_B = conway("B", self.a, self.b, self.c)
-        self.S_C = conway("C", self.a, self.b, self.c)
+        self.S_A = self.conway("A", self.a, self.b, self.c)
+        self.S_B = self.conway("B", self.a, self.b, self.c)
+        self.S_C = self.conway("C", self.a, self.b, self.c)
+    
+    def get_circumcircle(self):
+        return Circle(equation=core.sympy.Eq(-1 * self.a * self.a * self.y * self.z -  self.b * self.b * self.x * self.z - 1 * self.c * self.c * self.y * self.x, 0))
+
+    def get_perpendicular_bisector(self, s):
+        O = self.getPoint("O")
+        if s.lower() == "ab" or s.lower() == "ba":
+            return Line(points=(O, Point(1, 1, 0)))
+        if s.lower() == "bc" or s.lower() == "cb":
+            return Line(points=(O, Point(0, 1, 1)))
+        if s.lower() == "ca" or s.lower() == "ac":
+            return Line(points=(O, Point(1, 0, 1)))
 
     @staticmethod
     def conway(vertex, a, b, c):

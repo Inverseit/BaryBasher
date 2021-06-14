@@ -41,6 +41,8 @@ class Circle():
         solution = list(sympy.linsolve([f, s, t], self.uvw))[0]
         self.coefs = solution
         u_solved, v_solved, w_solved = solution
+        u_solved, v_solved, w_solved = sympify(
+            u_solved), sympify(v_solved), sympify(w_solved)
         circleEquation = sympify(self.general.subs({u: u_solved, v: v_solved, w: w_solved}))
         return circleEquation 
     
@@ -48,6 +50,7 @@ class Circle():
         return self.equation.subs(p.getAsDict())
 
     def contains(self, p):
+        print(core.sympy.simplify(self.power(p)))
         return self.power(p).equals(core.sympy.S.Zero)
 
     def radicalAxisWith(self, c):
@@ -58,5 +61,33 @@ class Circle():
         u2, v2, w2 = c.coefs
         u3, v3, w3 = u1 - u2, v1-v2, w1-w2
         return Line(equation=core.sympy.Eq(u3*x+v3*y+w3*z,0), description=f"Radical axis of {self} and {c}")
+
+
+    def intersectWithLine(self, line):
+        lineEquation = line.get_equation()
+        circleEquation = self.equation
+        solution = sympy.solve([lineEquation, circleEquation, core.x+core.y+core.z - 1], self.xyz)
+        solution_list = list(solution)
+        if not solution_list:
+            raise Exception("circle and line do not intersect")
+        if len(solution_list) == 1:
+            print("tangent")
+        for i in range(len(solution_list)):
+            x, y, z= solution_list[i]
+            solution_list[i] = Point(x,y,z)
+        return solution_list
+    
+    def intersectionNotEqualTo(self, line, point):
+        if not isinstance(line, Line):
+            raise Exception("Input must be a line")
+        if not isinstance(point, Point):
+            raise Exception("Input must be a point")
+        solution_list = self.intersectWithLine(line)
+        return list(filter(lambda x: x != point, solution_list))
+
+    def __str__(self):
+        if self.points:
+            return f"Circle through {self.points} with equation {self.equation} = 0"
+        return f"{self.equation} = 0"
 
     

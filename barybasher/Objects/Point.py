@@ -10,7 +10,8 @@ class Point():
         self.y = self.getConverted(y)
         self.z = self.getConverted(z)
         self.short = (x, y, z)
-        self.normal = self.get_normalized_dict().values()
+        self.normalValues = list(self.get_normalized_dict().values())
+        self.normalDict = self.get_normalized_dict()
         self._beautifiedVersion = self.beautified
     @staticmethod
     def getConverted(v):
@@ -27,7 +28,7 @@ class Point():
         sumOfCoords = sympify(self.x + self.y + self.z)
         if sumOfCoords == sympy.S.Zero:
             print("Point at infinity")
-        return {x: sympify(self.x/sumOfCoords), y: sympify(self.y/sumOfCoords), z: sympify(self.z/sumOfCoords)}
+        return {"x": sympify(self.x/sumOfCoords), "y": sympify(self.y/sumOfCoords), "z": sympify(self.z/sumOfCoords)}
     
     def beautified(self):
         mx, my, mz = self.x, self.y, self.z
@@ -44,10 +45,12 @@ class Point():
         t = self._beautifiedVersion()
         return f"({t.x}:{t.y}:{t.z})"
 
+    def __repr__(self):
+        t = self._beautifiedVersion()
+        return f"Point({t.x}:{t.y}:{t.z})"
+
     def __eq__(self, other):
-        if not isinstance(other, Point):
-            return
-        return self.normal[x].equals(other.normal[x]) and self.normal[y].equals(other.normal[y]) and self.normal[z].equals(other.normal[z])
+        return self.normalDict["x"].equals(other.normalDict["x"]) and self.normalDict["y"].equals(other.normalDict["y"]) and self.normalDict["z"].equals(other.normalDict["z"])
 
     def getAsList(self):
         return list(self.short)
