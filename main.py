@@ -18,30 +18,6 @@ ser_per = ABC.get_perpendicular_bisector("CA")
 I = ABC.getPoint("I")
 A_bisect = Line(points=(A, I))
 P = ser_per.intersectWith(A_bisect)
-print(P)
-
-
-
-# t = Circle(points=(A, K, M))
-
-# print(t)
-t2 = Circle(points=(A, M, P))
-# print(t2)
-
-# print(core.sympify(t.equation - t2.equation))
-
-# print(t2.contains(P))
-print(t2.contains(K))
-
-
-
-
-
-# K = ABC.getPoint("symmedian")
-# m = ABC.getTangent("C")
-# S = n.intersectWith(m)
-
-# result = core.is_collinear(K, S, A)
-# if result:
-#     print("S lies in AK")
+t = Circle(points=(A, K, M))
+print(t.contains(P))
 

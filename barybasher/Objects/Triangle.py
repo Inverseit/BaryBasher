@@ -92,7 +92,8 @@ class Triangle():
         if s.lower() == "bc" or s.lower() == "cb":
             return Line(points=(O, Point(0, 1, 1)))
         if s.lower() == "ca" or s.lower() == "ac":
-            return Line(points=(O, Point(1, 0, 1)))
+            # return Line(points=(O, Point(1, 0, 1)))
+            return Line(equation=core.sympy.Eq(self.b* self.b * (self.z - self.x) + self.y * (self.c * self.c - self.a * self.a),0))
 
     @staticmethod
     def conway(vertex, a, b, c):
