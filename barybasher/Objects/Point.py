@@ -43,7 +43,8 @@ class Point():
 
     def __str__(self):
         t = self._beautifiedVersion()
-        return f"({t.x}:{t.y}:{t.z})"
+        s =  f"({t.x}:{t.y}:{t.z})"
+        return s
 
     def __repr__(self):
         t = self._beautifiedVersion()

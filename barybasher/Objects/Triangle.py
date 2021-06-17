@@ -9,6 +9,7 @@ class Triangle():
         self.B = Point(0,1,0)
         self.C = Point(0,0,1)
         self.a, self.b, self.c = a, b, c
+        self.s = (a + b + c) / 2
         self.x, self.y, self.z = core.xyz
         self.___conway_inited = False
 
@@ -42,7 +43,14 @@ class Triangle():
         if s == "I_C" or s == "IC" or s.lower() == "c-excenter":
             return Point(self.a, self.b, -self.c)
 
-        # if s == "D" or s.lower() == "incenter"
+        if s == "D" or s.lower() == "incenter touch a":
+            return Point(0, self.s - self.c, self.s - self.b)
+
+        if s == "E" or s.lower() == "incenter touch b":
+            return Point(self.s - self.c, 0, self.s - self.a)
+
+        if s == "F" or s.lower() == "incenter touch c":
+            return Point(self.s - self.b, self.s - self.a, 0)
 
         raise Exception("other points will be later")
 

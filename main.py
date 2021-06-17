@@ -10,8 +10,8 @@ ABC = Triangle(core.a, core.b, core.c)
 A, B, C = ABC.getVertices()
 w = ABC.get_circumcircle()
 M = util.midpoint(A, B)
-I_C = ABC.getPoint("I_C") # Вневписанка C
-AK = Line(points=(A, I_C)) # Внешняя биссектриса
+I_C = ABC.getPoint("I_C")
+AK = Line(points=(A, I_C))
 K = w.intersectionNotEqualTo(AK, A)[0] 
 
 ser_per = ABC.get_perpendicular_bisector("CA")
