@@ -7,7 +7,7 @@ Just write the problem condition in the form that interface describes and see ho
 
 ## Example
 
-Here we prove a famouse symmedian lemma
+Here we prove a famous symmedian lemma
 
 
 ```python
