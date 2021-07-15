@@ -13,7 +13,6 @@ Here we prove a famous symmedian lemma
 ```python
 ABC = Triangle(core.a, core.b, core.c)
 A, B, C = ABC.getVertices()
-w = ABC.get_circumcircle()
 tangentB = ABC.getTangent("B")
 tangentC = ABC.getTangent("C")
 
