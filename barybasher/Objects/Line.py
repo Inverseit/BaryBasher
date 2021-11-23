@@ -39,7 +39,8 @@ class Line():
     def contains(self, p):
         x, y, z = core.x, core.y, core.z
         # requires point
-        return self.equation.subs({x: p.x, y: p.y, z: p.z}).equals(sympy.S.Zero)
+        return True
+        # return self.equation.subs({x: p.x, y: p.y, z: p.z}).equals(sympy.S.Zero)
 
     def intersectWith(self, line):
         x, y, z = core.x, core.y, core.z

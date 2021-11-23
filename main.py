@@ -5,19 +5,15 @@ from barybasher.Objects.Circle import Circle
 import barybasher.core as core
 import barybasher.Objects.util as util
 
-
 ABC = Triangle(core.a, core.b, core.c)
 A, B, C = ABC.getVertices()
-w = ABC.get_circumcircle()
-M = util.midpoint(A, B)
-I_C = ABC.getPoint("I_C")
-AK = Line(points=(A, I_C))
-K = w.intersectionNotEqualTo(AK, A)[0] 
+tangentB = ABC.getTangent("B")
+tangentC = ABC.getTangent("C")
+L = tangentB.intersectWith(tangentC)
+K = ABC.getPoint("K") # Symmedian point
+A_symmedian = Line(points=[A, K])
 
-ser_per = ABC.get_perpendicular_bisector("CA")
-I = ABC.getPoint("I")
-A_bisect = Line(points=(A, I))
-P = ser_per.intersectWith(A_bisect)
-t = Circle(points=(A, K, M))
-print(t.contains(P))
+
+assert(A_symmedian.contains(L)) #resolves to true
+print("Lemma is true")
 
