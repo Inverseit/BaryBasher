@@ -1,5 +1,6 @@
 
 # Bary basher
+The project is a verifier for elementary Euclidian Geometry facts.
 
 Run the following command on your terminal within the directory of the project:
 
