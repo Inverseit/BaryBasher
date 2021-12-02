@@ -1,7 +1,11 @@
 
 # Bary basher
 
-Just write the problem condition in the form that interface describes and see how your geomtry problem is bashed in several seconds.
+Run the following command on your terminal within the directory of the project:
+
+pip install -r requirements.txt
+
+To have your problem verified, simply write the problem condition in the form that the interface below describes and see how your geomtry problem is bashed in several seconds.
 
 
 
