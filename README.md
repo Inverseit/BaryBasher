@@ -14,18 +14,16 @@ To have your problem verified, simply write the problem condition in the form th
 
 Here we prove a famous symmedian lemma
 
+![Theorem diagram](https://upload.wikimedia.org/wikipedia/commons/2/2f/Symmedian_Construction.png)
 
 ```python
 ABC = Triangle(core.a, core.b, core.c)
 A, B, C = ABC.getVertices()
-tangentB = ABC.getTangent("B")
-tangentC = ABC.getTangent("C")
-
-L = tangentB.intersectWith(tangentC)
+D = ABC.getTangent("B").intersectWith(ABC.getTangent("C"))
 K = ABC.getPoint("K") # Symmedian point
 A_symmedian = Line(points=[A, K])
 
-assert(A_symmedian.contains(L)) #resolves to true
+assert(A_symmedian.contains(D)) #resolves to true
 ```
 
   
